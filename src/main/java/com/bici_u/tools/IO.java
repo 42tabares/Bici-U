@@ -1,33 +1,24 @@
 package com.bici_u.tools;
+import com.bici_u.management.Bicycle;
 
-import java.io.*;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class IO {
 
-    public static String importBicycles(String fileName, String identifier){
-
-        String result = null;
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String testLine;
-            while ((testLine = reader.readLine()) != null) {
-
-            }
+    public static List ImportBicycles(){
+        List Bikes = new ArrayList();
+        try (BufferedReader reader = new BufferedReader(new FileReader("data/bicycle.txt"))) {
+            String[] items = reader.readLine().split(";");
+            Bicycle bike = new Bicycle(items[0],items[1],items[2],Boolean.valueOf(items[3]));
+            Bikes.add(bike);
         }
         catch(IOException e){
             System.out.println(e.getMessage());
         }
-        return result;
-    }
-
-    public static void overwrite(String fileName, String identifier, String newText){
-
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            writer.write("Lorem Ipsum");
-        }
-        catch(IOException e){
-            System.out.println("No text found to overwrite");
-        }
+        return Bikes;
     }
 }
