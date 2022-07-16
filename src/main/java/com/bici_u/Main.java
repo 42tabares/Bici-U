@@ -27,7 +27,7 @@ public class Main {
             switch (option) {
                 case (1) -> MainMenu.createUser();
                 case (2) -> MainMenu.borrowBicycle();
-                case (3) -> MainMenu.returnBycicle();
+                case (3) -> MainMenu.returnBicycle();
                 case (4) -> MainMenu.payTicket();
                 case (5) -> MainMenu.ticketHistory();
                 case (6) -> execute = false;
