@@ -138,18 +138,22 @@ public class Ticket {
         double halfHours = Math.floor(minutes/30);
         Integer costTime = (int) (double) halfHours*3;
 
-        this.cost += costTime;
+        cost += costTime;
 
         if (!this.hasHelmet){
-            this.cost += 5;
+            cost += 5;
         }
         if (!this.inGoodState){
-            this.cost += 5;
+            cost += 5;
         }
+        this.cost = cost;
     }
 
     public void displayTicket(){
-        System.out.println(this.ID + "\t\t" + this.userID + "\t\t" + this.username + "\t\t" + this.cost + "\t\t" + this.status);
+        if (this.status.equals("Active")){
+            this.updateCost();
+        }
+        System.out.println(this.ID + "\t\t" + this.userID + "\t\t\t\t" + this.username + "\t\t\t\t" + this.cost + "\t\t" + this.status);
     }
 }
 

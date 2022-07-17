@@ -27,6 +27,7 @@ public class MainMenu {
 
         if (age >= 18){
             User user = new User(DNI,name,age,usertype);
+            System.out.println("User Created!\n" + user);
             users.add(user);
             IO.export(users);
         } else {
@@ -116,7 +117,7 @@ public class MainMenu {
         String ID = input.Str("Input the ticket ID to pay:");
         Ticket ticket;
         try {
-            ticket = (Ticket) Query.byAttribute(ID, "getID", tickets).get(0);
+            ticket = Query.byAttribute(ID, "getID", tickets).get(0);
         } catch (IndexOutOfBoundsException e){
             System.out.println("No Ticket with that ID was found, please check your Ticket ID!");
             return;
