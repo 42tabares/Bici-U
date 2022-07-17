@@ -18,19 +18,18 @@ public class Ticket {
     private Integer cost;
 
     public String generateID(int currentID) {
-        currentID += 1;
         int Num = currentID;
         return ("T-" + String.format("%03d", Num));
     }
 
     public Ticket(String bicycleID, String username, String userID) {
-        this.ID = generateID(IO.ImportUsers().size());
+        this.ID = generateID(IO.ImportUsers().size()-1);
         this.bicycleID = bicycleID;
         this.username = username;
         this.userID = userID;
         this.date = LocalDateTime.now().toString().split("T")[0];
         this.startHour = LocalDateTime.now().toString();
-        this.endHour = null;
+        this.endHour = "yyyy-mm-ddTPending...";
         this.hasHelmet = true;
         this.inGoodState = true;
         this.status = "Active";
@@ -87,21 +86,28 @@ public class Ticket {
         return inGoodState;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public Integer getCost() {
+        return cost;
+    }
+
     @Override
     public String toString() {
-        return "Ticket{" +
-                "ID='" + ID + '\'' +
-                ", bicycleID='" + bicycleID + '\'' +
-                ", username='" + username + '\'' +
-                ", userID='" + userID + '\'' +
-                ", date='" + date + '\'' +
-                ", startHour='" + startHour + '\'' +
-                ", endHour='" + endHour + '\'' +
-                ", hasHelmet=" + hasHelmet +
-                ", inGoodState=" + inGoodState +
-                ", status='" + status + '\'' +
-                ", cost=" + cost +
-                '}';
+        return "TICKET INFO:"        + '\n' + '\n' +
+                "Ticket ID: "        + ID + '\n' +
+                "Bicycle ID: "       + bicycleID + '\n' +
+                "User's name: "      + username + '\n' +
+                "User's ID: "        + userID + '\n' +
+                "Date: "             + date + '\n' +
+                "Start Hour: "       + startHour.split("T")[1] + '\n' +
+                "End Hour: "          + endHour.split("T")[1] + '\n' +
+                "Helmet: "           + hasHelmet + '\n' +
+                "in Good State: "    + inGoodState + '\n'+
+                "Status: "           + status + '\n' +
+                "cost: "             + cost + '\n';
     }
 }
 

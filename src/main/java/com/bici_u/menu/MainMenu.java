@@ -7,6 +7,7 @@ import com.bici_u.tools.IO;
 import com.bici_u.tools.Input;
 import com.bici_u.tools.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainMenu {
@@ -37,14 +38,55 @@ public class MainMenu {
 
     public static void borrowBicycle() {
         System.out.println("BORROW BICYCLE");
-        String ID = input.Str("Your ID (ex: P-1234 or S-5678):");
-        List userTickets = Query.byStringAttribute(ID,"getUserID",tickets);
-        System.out.println(userTickets.toString());
+        String ID = input.Str("Your user ID (ex: P-1234 or S-5678):");
+
+        List<User> queryUser = Query.byAttribute(ID,"getID",users);
+        User user = null;
+        try{
+            user = queryUser.get(0);
+        } catch(IndexOutOfBoundsException e) {
+            System.out.println("No user found with that ID! make sure you're registered!");
+        }
+
+        List<Ticket> userTickets = Query.byAttribute(ID,"getID",tickets);
+        List<Ticket> pendingTickets = new ArrayList<>();
+        for (Ticket ticket: userTickets) {
+            if (ticket.getCost() > 0) {
+                pendingTickets.add(ticket);
+            }
+        }
+
+        if (pendingTickets.isEmpty()){
+            String requiredType = input.Str("What type of Bicycle do you want? (Mountain or Road)");
+            List<Bicycle> availableTypes = Query.byAttribute(requiredType,"getBikeType",bicycles);
+            List<Bicycle> availableBikes = Query.byAttribute(true,"getAvailable",availableTypes);
+            if (!availableBikes.isEmpty()){
+
+                Bicycle selectedBike = availableBikes.get(0);
+                Integer indexOfBike = bicycles.indexOf(selectedBike);
+                selectedBike.setAvailable(false);
+                bicycles.set(indexOfBike,selectedBike);
+                IO.export(bicycles);
+
+                Ticket newTicket = new Ticket(selectedBike.getID(),user.getName(),user.getID());
+                tickets.add(newTicket);
+                IO.export(tickets);
+
+                System.out.println("Lending Successful!");
+                System.out.println(newTicket);
+
+            }
+            else {
+                System.out.println("Sorry! no " + requiredType + " Bikes are available, please check later!");
+            }
+        } else {
+            System.out.println("You have tickets pending for payment...");
+            pendingTickets.forEach(ticket -> System.out.println(ticket.toString()));
+        }
     }
 
     public static void returnBicycle() {
-        List userTickets = Query.byStringAttribute("Road","getBikeType",bicycles);
-        System.out.println(userTickets.toString());
+
     }
 
     public static void payTicket() {

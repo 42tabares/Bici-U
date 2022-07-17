@@ -2,31 +2,31 @@ package com.bici_u.management;
 
 public class Bicycle {
 
-    private String code;
+    private String ID;
     private String bikeType;
     private String color;
 
-    private Boolean isAvailable;
+    private Boolean available;
 
     public Bicycle(String code, String bikeType, String color, boolean isAvailable) {
-        this.code = code;
+        this.ID = code;
         this.bikeType = bikeType;
         this.color = color;
-        this.isAvailable = isAvailable;
+        this.available = isAvailable;
     }
 
     @Override
     public String toString() {
         return "Bicycle{" +
-                "code='" + code + '\'' +
+                "code='" + ID + '\'' +
                 ", bikeType='" + bikeType + '\'' +
                 ", color='" + color + '\'' +
-                ", isAvailable=" + isAvailable +
+                ", isAvailable=" + available +
                 '}';
     }
 
     public String getID() {
-        return code;
+        return ID;
     }
 
     public String getBikeType() {
@@ -38,6 +38,11 @@ public class Bicycle {
     }
 
     public Boolean getAvailable() {
-        return isAvailable;
+        return available;
+    }
+
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 }

@@ -6,14 +6,14 @@ public class User {
     private String name;
     private int age;
     private String role;
-    private String id;
+    private String ID;
 
     public User(String DNI, String name, int age, String role) {
         this.DNI = DNI;
         this.name = name;
         this.age = age;
         this.role = role;
-        this.id = this.role + "-" + this.DNI;
+        this.ID = this.role + "-" + this.DNI;
     }
 
     public User(String DNI, String name, int age, String role, String id) {
@@ -21,19 +21,19 @@ public class User {
         this.name = name;
         this.age = age;
         this.role = role;
-        this.id = id;
+        this.ID = id;
     }
 
     @Override
     public String toString() {
         return "USER INFO:        \n" +
                 "NAME:" + name + '\n' +
-                "ID:"   + age  + '\n' +
-                "AGE:"  + id   + '\n';
+                "USER ID:"   + ID  + '\n' +
+                "AGE:"  + age   + '\n';
     }
 
     public String getID() {
-        return id;
+        return ID;
     }
 
     public String getDNI() {

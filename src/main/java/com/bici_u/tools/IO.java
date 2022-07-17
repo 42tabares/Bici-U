@@ -61,7 +61,6 @@ public class IO {
     }
 
     public static void export(List list){
-        System.out.println(list.get(0).getClass().toString());
         Object object = list.get(0);
         String objectType = object.getClass().toString();
         String path = switch (objectType) {

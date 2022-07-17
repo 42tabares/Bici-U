@@ -1,0 +1,3 @@
+T-000;BIC-00;DO NOT DELETE;N-000;2000-01-01;2022-07-16T23:52:33.963420300;Pending...;true;true;Active;0
+T-001;BIC-01;Solaris Leo;S-123;2022-07-17;2022-07-17T00:17:06.895803700;Pending...;true;true;Active;0
+T-002;BIC-04;Ralsei Dreemurr;S-456;2022-07-17;2022-07-17T00:31:19.796205500;yyyy-mm-ddTPending...;true;true;Active;0
