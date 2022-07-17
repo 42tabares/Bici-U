@@ -34,6 +34,5 @@ public class Main {
                 default -> System.out.println("Not a valid option");
             }
         } while(execute);
-
     }
 }

@@ -2,6 +2,7 @@ package com.bici_u.management;
 
 import com.bici_u.tools.IO;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class Ticket {
 
@@ -18,12 +19,12 @@ public class Ticket {
     private Integer cost;
 
     public String generateID(int currentID) {
-        int Num = currentID;
+        int Num = currentID+1;
         return ("T-" + String.format("%03d", Num));
     }
 
     public Ticket(String bicycleID, String username, String userID) {
-        this.ID = generateID(IO.ImportUsers().size()-1);
+        this.ID = generateID(IO.ImportTickets().size());
         this.bicycleID = bicycleID;
         this.username = username;
         this.userID = userID;
@@ -94,6 +95,22 @@ public class Ticket {
         return cost;
     }
 
+    public void setHasHelmet(Boolean hasHelmet) {
+        this.hasHelmet = hasHelmet;
+    }
+
+    public void setInGoodState(Boolean inGoodState) {
+        this.inGoodState = inGoodState;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
+    }
+
     @Override
     public String toString() {
         return "TICKET INFO:"        + '\n' + '\n' +
@@ -103,11 +120,36 @@ public class Ticket {
                 "User's ID: "        + userID + '\n' +
                 "Date: "             + date + '\n' +
                 "Start Hour: "       + startHour.split("T")[1] + '\n' +
-                "End Hour: "          + endHour.split("T")[1] + '\n' +
+                "End Hour: "         + endHour.split("T")[1] + '\n' +
                 "Helmet: "           + hasHelmet + '\n' +
                 "in Good State: "    + inGoodState + '\n'+
                 "Status: "           + status + '\n' +
                 "cost: "             + cost + '\n';
+    }
+
+    public void updateCost() {
+        Integer cost = 0;
+
+        LocalDateTime startHour = LocalDateTime.parse(this.startHour);
+        this.endHour = LocalDateTime.now().toString();
+        LocalDateTime endHour   = LocalDateTime.now();
+        Long minutesLong = ChronoUnit.MINUTES.between(startHour,endHour);
+        Integer minutes = (int) (long) minutesLong;
+        double halfHours = Math.floor(minutes/30);
+        Integer costTime = (int) (double) halfHours*3;
+
+        this.cost += costTime;
+
+        if (!this.hasHelmet){
+            this.cost += 5;
+        }
+        if (!this.inGoodState){
+            this.cost += 5;
+        }
+    }
+
+    public void displayTicket(){
+        System.out.println(this.ID + "\t\t" + this.userID + "\t\t" + this.username + "\t\t" + this.cost + "\t\t" + this.status);
     }
 }
 

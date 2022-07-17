@@ -15,5 +15,16 @@ public class Input {
             Scanner scanner = new Scanner(System.in);
             return scanner.nextInt();
         }
+
+        public Boolean boolYN(String string){
+            System.out.println(string);
+            Scanner scanner = new Scanner(System.in);
+            String str = scanner.nextLine();
+            if (str.equals("Y")){
+                return true;
+            } else {
+                return false;
+            }
+        }
 }
 

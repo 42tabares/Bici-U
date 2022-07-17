@@ -1,3 +1,2 @@
-000000;Placeholder;1;S;S-0
-123;Solaris Leo;21;S;S-123
+123;Solaris;21;S;S-123
 456;Ralsei Dreemurr;20;S;S-456
