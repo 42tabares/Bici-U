@@ -35,7 +35,7 @@ public class IO {
         try (BufferedReader reader = new BufferedReader(new FileReader("data/users.txt"))) {
             while ((line = reader.readLine()) != null) {
                 String[] items = line.split(";");
-                User user = new User(items[0],items[1],Integer.valueOf(items[2]),items[3]);
+                User user = new User(items[0],items[1],Integer.valueOf(items[2]),items[3],items[4]);
                 users.add(user);
             }
         }
@@ -61,12 +61,13 @@ public class IO {
     }
 
     public static void export(List list){
+        System.out.println(list.get(0).getClass().toString());
         Object object = list.get(0);
         String objectType = object.getClass().toString();
         String path = switch (objectType) {
-            case ("Bicycle") -> "data/bicycles.txt";
-            case ("Ticket") -> "data/tickets.txt";
-            case ("User") -> "data/users.txt";
+            case ("class com.bici_u.management.Bicycle") -> "data/bicycles.txt";
+            case ("class com.bici_u.management.Ticket") -> "data/tickets.txt";
+            case ("class com.bici_u.management.User") -> "data/users.txt";
             default -> "data/";
         };
 
@@ -76,7 +77,7 @@ public class IO {
             }
         }
         catch(IOException e){
-            System.out.println(e.getMessage());
+            System.out.println(e);
         }catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
