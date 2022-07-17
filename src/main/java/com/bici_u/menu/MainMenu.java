@@ -1,9 +1,12 @@
 package com.bici_u.menu;
 
 import com.bici_u.management.Bicycle;
+import com.bici_u.management.Ticket;
 import com.bici_u.management.User;
 import com.bici_u.tools.IO;
 import com.bici_u.tools.Input;
+import com.bici_u.tools.Query;
+
 import java.util.List;
 
 public class MainMenu {
@@ -33,11 +36,15 @@ public class MainMenu {
     }
 
     public static void borrowBicycle() {
-        System.out.println("Borrow Bicycle");
+        System.out.println("BORROW BICYCLE");
+        String ID = input.Str("Your ID (ex: P-1234 or S-5678):");
+        List userTickets = Query.byStringAttribute(ID,"getUserID",tickets);
+        System.out.println(userTickets.toString());
     }
 
     public static void returnBicycle() {
-        System.out.println("Return Bicycle");
+        List userTickets = Query.byStringAttribute("Road","getBikeType",bicycles);
+        System.out.println(userTickets.toString());
     }
 
     public static void payTicket() {

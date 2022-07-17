@@ -50,7 +50,7 @@ public class IO {
         try (BufferedReader reader = new BufferedReader(new FileReader("data/tickets.txt"))) {
             while ((line = reader.readLine()) != null) {
                 String[] items = line.split(";");
-                Ticket ticket = new Ticket(items[0],items[1],items[2],items[3],items[4],items[5],items[6],Boolean.valueOf(items[7]),Boolean.valueOf(items[8]));
+                Ticket ticket = new Ticket(items[0],items[1],items[2],items[3],items[4],items[5],items[6],Boolean.valueOf(items[7]),Boolean.valueOf(items[8]),items[9],Integer.valueOf(items[10]));
                 tickets.add(ticket);
             }
         }

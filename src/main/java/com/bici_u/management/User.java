@@ -32,6 +32,10 @@ public class User {
                 "AGE:"  + id   + '\n';
     }
 
+    public String getID() {
+        return id;
+    }
+
     public String getDNI() {
         return DNI;
     }
@@ -48,7 +52,4 @@ public class User {
         return role;
     }
 
-    public String getId() {
-        return id;
-    }
 }

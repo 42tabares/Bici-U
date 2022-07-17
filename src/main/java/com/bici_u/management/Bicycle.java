@@ -24,4 +24,20 @@ public class Bicycle {
                 ", isAvailable=" + isAvailable +
                 '}';
     }
+
+    public String getID() {
+        return code;
+    }
+
+    public String getBikeType() {
+        return bikeType;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public Boolean getAvailable() {
+        return isAvailable;
+    }
 }

@@ -1,11 +1,10 @@
 package com.bici_u.management;
 
-
+import com.bici_u.tools.IO;
 import java.time.LocalDateTime;
 
 public class Ticket {
 
-    static int generalID = 0;
     private String ID;
     private String bicycleID;
     private String username;
@@ -15,16 +14,17 @@ public class Ticket {
     private String endHour;
     private Boolean hasHelmet;
     private Boolean inGoodState;
+    private String status;
+    private Integer cost;
 
     public String generateID(int currentID) {
-
-        generalID += 1;
-        int Num = generalID;
+        currentID += 1;
+        int Num = currentID;
         return ("T-" + String.format("%03d", Num));
     }
 
     public Ticket(String bicycleID, String username, String userID) {
-        this.ID = generateID(generalID);
+        this.ID = generateID(IO.ImportUsers().size());
         this.bicycleID = bicycleID;
         this.username = username;
         this.userID = userID;
@@ -33,9 +33,11 @@ public class Ticket {
         this.endHour = null;
         this.hasHelmet = true;
         this.inGoodState = true;
+        this.status = "Active";
+        this.cost = 0;
     }
 
-    public Ticket(String ID, String bicycleID,String username, String userID, String date, String startHour, String endHour, Boolean hasHelmet, Boolean inGoodState) {
+    public Ticket(String ID, String bicycleID,String username, String userID, String date, String startHour, String endHour, Boolean hasHelmet, Boolean inGoodState,String status, Integer cost) {
         this.ID = ID;
         this.bicycleID = bicycleID;
         this.username = username;
@@ -45,10 +47,8 @@ public class Ticket {
         this.endHour = endHour;
         this.hasHelmet = hasHelmet;
         this.inGoodState = inGoodState;
-    }
-
-    public static int getGeneralID() {
-        return generalID;
+        this.status = status;
+        this.cost = cost;
     }
 
     public String getID() {
@@ -87,5 +87,21 @@ public class Ticket {
         return inGoodState;
     }
 
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ID='" + ID + '\'' +
+                ", bicycleID='" + bicycleID + '\'' +
+                ", username='" + username + '\'' +
+                ", userID='" + userID + '\'' +
+                ", date='" + date + '\'' +
+                ", startHour='" + startHour + '\'' +
+                ", endHour='" + endHour + '\'' +
+                ", hasHelmet=" + hasHelmet +
+                ", inGoodState=" + inGoodState +
+                ", status='" + status + '\'' +
+                ", cost=" + cost +
+                '}';
+    }
 }
 
