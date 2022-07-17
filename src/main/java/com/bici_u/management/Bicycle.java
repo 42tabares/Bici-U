@@ -15,7 +15,13 @@ public class Bicycle {
         this.isAvailable = isAvailable;
     }
 
-    public String toOutputFormat(){
-        return this.code + ";" + this.bikeType + ";" + this.color + ";" + this.isAvailable + "\n" ;
+    @Override
+    public String toString() {
+        return "Bicycle{" +
+                "code='" + code + '\'' +
+                ", bikeType='" + bikeType + '\'' +
+                ", color='" + color + '\'' +
+                ", isAvailable=" + isAvailable +
+                '}';
     }
 }

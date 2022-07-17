@@ -1,5 +1,10 @@
 package com.bici_u.menu;
 
+import com.bici_u.management.Bicycle;
+import com.bici_u.tools.IO;
+
+import java.util.List;
+
 public class MainMenu {
 
     public static void createUser(){
@@ -20,6 +25,9 @@ public class MainMenu {
     }
 
     public static void ticketHistory() {
-        System.out.println("Ticket History:");
+        List bicyclesList = IO.ImportBicycles();
+        for (Object bike: bicyclesList) {
+            System.out.println(bike);
+        }
     }
 }
